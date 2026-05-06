@@ -1,0 +1,7 @@
+<Project>
+    <ItemGroup>
+        <!-- Microsoft Extensions-->
+        <PackageVersion Include="Microsoft.Extensions.Configuration.Json" Version="10.0.5" />
+        <PackageVersion Include="Microsoft.Extensions.Hosting" Version="10.0.5" />
+    </ItemGroup>
+</Project>
