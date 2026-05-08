@@ -26,8 +26,5 @@ internal sealed class LinesPipeline(ILogger<LinesPipeline> logger, IOpenStreetMa
         IEnumerable<LinesDTO> linesDTOs = overpassMapper.Map(overpassResponse, "AIR");
 
         
-
-
-
     }
 }
