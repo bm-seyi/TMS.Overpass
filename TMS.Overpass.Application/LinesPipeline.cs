@@ -1,7 +1,7 @@
 using System.Diagnostics;
 using Microsoft.Extensions.Logging;
 
-namespace TMS.OverpassLines.Application;
+namespace TMS.Overpass.Application;
 
 internal sealed class LinesPipeline(ILogger<LinesPipeline> logger)
 {

@@ -1,4 +1,4 @@
-namespace TMS.OverpassLines.Domain.Overpass;
+namespace TMS.Overpass.Domain.Overpass;
 
 public sealed class OverpassQuery
 {

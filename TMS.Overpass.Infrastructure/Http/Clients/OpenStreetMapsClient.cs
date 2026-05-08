@@ -1,10 +1,10 @@
 using System.Diagnostics;
 using Microsoft.Extensions.Logging;
-using TMS.OverpassLines.Application.Interfaces.Infrastructure.Http.Clients;
-using TMS.OverpassLines.Domain.Overpass;
-using TMS.OverpassLines.Infrastructure.Extensions;
+using TMS.Overpass.Application.Interfaces.Infrastructure.Http.Clients;
+using TMS.Overpass.Domain.Overpass;
+using TMS.Overpass.Infrastructure.Extensions;
 
-namespace TMS.OverpassLines.Infrastructure.Http.Clients;
+namespace TMS.Overpass.Infrastructure.Http.Clients;
 
 internal sealed class OpenStreetMapsClient(ILogger<OpenStreetMapsClient> logger, HttpClient httpClient) : IOpenStreetMapsClient
 {

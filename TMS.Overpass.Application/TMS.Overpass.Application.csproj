@@ -3,6 +3,6 @@
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TMS.OverpassLines.Domain\TMS.OverpassLines.Domain.csproj" />
+    <ProjectReference Include="..\TMS.Overpass.Domain\TMS.Overpass.Domain.csproj" />
   </ItemGroup>
 </Project>

@@ -1,6 +1,6 @@
-using TMS.OverpassLines.Domain.Overpass;
+using TMS.Overpass.Domain.Overpass;
 
-namespace TMS.OverpassLines.Application.Interfaces.Infrastructure.Http.Clients;
+namespace TMS.Overpass.Application.Interfaces.Infrastructure.Http.Clients;
 
 public interface IOpenStreetMapsClient
 {
