@@ -5,7 +5,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\TMS.OverpassLines.Application\TMS.OverpassLines.Application.csproj" />
+    <ProjectReference Include="..\TMS.Overpass.Application\TMS.Overpass.Application.csproj" />
   </ItemGroup>
 
 </Project>

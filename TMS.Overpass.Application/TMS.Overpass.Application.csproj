@@ -1,8 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <ItemGroup>
     <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" />
+    <PackageReference Include="Riok.Mapperly" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\TMS.OverpassLines.Domain\TMS.OverpassLines.Domain.csproj" />
+    <ProjectReference Include="..\TMS.Overpass.Domain\TMS.Overpass.Domain.csproj" />
   </ItemGroup>
 </Project>

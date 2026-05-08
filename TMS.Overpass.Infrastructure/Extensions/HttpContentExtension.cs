@@ -1,6 +1,6 @@
 using System.Net.Http.Json;
 
-namespace TMS.OverpassLines.Infrastructure.Extensions;
+namespace TMS.Overpass.Infrastructure.Extensions;
 
 public static class HttpContentExtension
 {

@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace TMS.OverpassLines.Domain.Overpass;
+namespace TMS.Overpass.Domain.Overpass;
 
 public sealed record OverpassResponse
 {
