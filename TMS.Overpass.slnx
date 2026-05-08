@@ -1,0 +1,6 @@
+<Solution>
+  <Project Path="TMS.Overpass.Application/TMS.Overpass.Application.csproj" />
+  <Project Path="TMS.Overpass.Console/TMS.Overpass.Console.csproj" />
+  <Project Path="TMS.Overpass.Domain/TMS.Overpass.Domain.csproj" />
+  <Project Path="TMS.Overpass.Infrastructure/TMS.Overpass.Infrastructure.csproj" />
+</Solution>

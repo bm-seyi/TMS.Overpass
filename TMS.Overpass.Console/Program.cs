@@ -9,4 +9,5 @@ builder.Configuration
     .AddUserSecrets<Program>()
     .AddEnvironmentVariables();
 
+
 IHost host = builder.Build();
