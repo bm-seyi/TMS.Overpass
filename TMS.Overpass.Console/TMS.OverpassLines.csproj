@@ -9,4 +9,8 @@
     <PackageReference Include="Microsoft.Extensions.Hosting" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\TMS.OverpassLines.Infrastructure\TMS.OverpassLines.Infrastructure.csproj" />
+  </ItemGroup>
+
 </Project>
