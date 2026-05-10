@@ -2,7 +2,7 @@ using System.Net.Http.Json;
 
 namespace TMS.Overpass.Infrastructure.Extensions;
 
-public static class HttpContentExtension
+internal static class HttpContentExtension
 {
     extension(HttpContent httpContent)
     {
