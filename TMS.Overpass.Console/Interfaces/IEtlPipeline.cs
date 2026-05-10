@@ -1,4 +1,4 @@
-namespace TMS.Overpass.Application.Interfaces.Application;
+namespace TMS.Overpass.Console.Interfaces;
 
 public interface IEtlPipeline
 {

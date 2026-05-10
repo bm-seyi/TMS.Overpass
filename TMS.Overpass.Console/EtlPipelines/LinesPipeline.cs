@@ -1,11 +1,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
-using TMS.Overpass.Application.Interfaces.Application;
 using TMS.Overpass.Application.Interfaces.Infrastructure.Http.Clients;
 using TMS.Overpass.Application.Interfaces.Infrastructure.Persistence;
 using TMS.Overpass.Application.Interfaces.Infrastructure.Persistence.Repositories;
 using TMS.Overpass.Application.Mapping;
+using TMS.Overpass.Console.Interfaces;
 using TMS.Overpass.Domain.DTOs;
 using TMS.Overpass.Domain.Overpass;
 
@@ -29,9 +29,11 @@ internal sealed class LinesPipeline(ILogger<LinesPipeline> logger, IOpenStreetMa
         OverpassMapper overpassMapper = new OverpassMapper();
 
         IEnumerable<LinesDTO> linesDTOs = overpassMapper.Map(overpassResponse, "AIR");
-
+        
+        await  _unitOfWork.OpenAsync(cancellationToken);
         await _unitOfWork.BeginAsync(cancellationToken);
-        await _linesRepository.BulkAsync(linesDTOs, cancellationToken);
+        await _linesRepository.StageLinesAsync(linesDTOs, cancellationToken);
+        await _linesRepository.MergeStagedLinesAsync(cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 }

@@ -1,22 +1,33 @@
 using System.Diagnostics;
 using Microsoft.Extensions.Logging;
+using TMS.Overpass.Console.Interfaces;
 
-namespace TMS.OverpassLines.Console;
+namespace TMS.Overpass.Console;
 
-internal sealed class App(ILogger<App> logger)
+internal sealed class App(ILogger<App> logger, IEnumerable<IEtlPipeline> etlPipelines)
 {
     private readonly ILogger<App> _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+    private readonly IEnumerable<IEtlPipeline> _etlPipelines = etlPipelines ?? throw new ArgumentNullException(nameof(etlPipelines));
     private static readonly ActivitySource _activitySource = new ActivitySource("TMS.OverpassLines.Console");
 
-    public async Task RunAsync()
+    public async Task RunAsync(CancellationToken cancellationToken)
     {
-        string[]lines = ["APL", "ATL", "ASL", "BRL", "CCL", "SCL", "ECL", "EDD", "EYL", "ORL", "TPL"];
+        using Activity? activity = _activitySource.StartActivity("App.RunAsync");
 
-        foreach (string line in lines)
+        ParallelOptions options = new ParallelOptions
         {
-            var data = await extract.executeAsync(line);
-            var modified = await transform.executeAsync(data)
-            load.loadasync(moodified);
-        }
+            CancellationToken = cancellationToken,
+            MaxDegreeOfParallelism = Environment.ProcessorCount,
+        };
+
+        await Parallel.ForEachAsync(_etlPipelines, options,
+            async (pipeline, ct) =>
+            {
+                _logger.LogInformation("Starting pipeline {Pipeline}", pipeline.GetType().Name);
+
+                await pipeline.ExecuteAsync(ct);
+
+                _logger.LogInformation("Completed pipeline {Pipeline}", pipeline.GetType().Name);
+            });
     }
 }

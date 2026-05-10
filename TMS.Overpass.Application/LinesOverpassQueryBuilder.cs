@@ -1,6 +1,6 @@
 namespace TMS.Overpass.Application;
 
-internal static class LinesOverpassQueryBuilder
+public static class LinesOverpassQueryBuilder
 {
     public static string Build(string lineCode)
     {
