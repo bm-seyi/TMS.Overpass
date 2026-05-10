@@ -24,7 +24,8 @@ public static class ServiceCollectionExtension
                 x.BaseAddress = new Uri(url);
                 x.DefaultRequestHeaders.UserAgent.Clear();
                 x.DefaultRequestHeaders.UserAgent.ParseAdd("PostmanRuntime/7.54.0");
-            });
+            })
+            .AddStandardResilienceHandler();
             return services;
         }
 

@@ -10,6 +10,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\TMS.Overpass.Aspire.ServiceDefaults\TMS.Overpass.Aspire.ServiceDefaults.csproj" />
     <ProjectReference Include="..\TMS.Overpass.Infrastructure\TMS.Overpass.Infrastructure.csproj" />
   </ItemGroup>
 
