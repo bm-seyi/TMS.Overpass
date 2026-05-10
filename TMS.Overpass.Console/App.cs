@@ -17,7 +17,7 @@ internal sealed class App(ILogger<App> logger, IEnumerable<IEtlPipeline> etlPipe
         ParallelOptions options = new ParallelOptions
         {
             CancellationToken = cancellationToken,
-            MaxDegreeOfParallelism = Environment.ProcessorCount
+            MaxDegreeOfParallelism = Environment.ProcessorCount,
         };
 
         await Parallel.ForEachAsync(_etlPipelines, options,
