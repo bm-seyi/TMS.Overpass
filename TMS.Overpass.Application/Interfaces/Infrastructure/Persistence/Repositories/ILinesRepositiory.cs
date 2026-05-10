@@ -4,5 +4,6 @@ namespace TMS.Overpass.Application.Interfaces.Infrastructure.Persistence.Reposit
 
 public interface ILinesRepository
 {
-    Task BulkAsync(IEnumerable<LinesDTO> linesDTOs, CancellationToken cancellationToken);
+    Task StageLinesAsync(IEnumerable<LinesDTO> linesDTOs, CancellationToken cancellationToken);
+    Task MergeStagedLinesAsync(CancellationToken cancellationToken);
 }

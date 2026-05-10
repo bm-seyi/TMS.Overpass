@@ -29,9 +29,11 @@ internal sealed class LinesPipeline(ILogger<LinesPipeline> logger, IOpenStreetMa
         OverpassMapper overpassMapper = new OverpassMapper();
 
         IEnumerable<LinesDTO> linesDTOs = overpassMapper.Map(overpassResponse, "AIR");
-
+        
+        await  _unitOfWork.OpenAsync(cancellationToken);
         await _unitOfWork.BeginAsync(cancellationToken);
-        await _linesRepository.BulkAsync(linesDTOs, cancellationToken);
+        await _linesRepository.StageLinesAsync(linesDTOs, cancellationToken);
+        await _linesRepository.MergeStagedLinesAsync(cancellationToken);
         await _unitOfWork.SaveChangesAsync(cancellationToken);
     }
 }
