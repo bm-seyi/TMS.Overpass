@@ -1,11 +1,11 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
-using TMS.Overpass.Application.Interfaces.Application;
 using TMS.Overpass.Application.Interfaces.Infrastructure.Http.Clients;
 using TMS.Overpass.Application.Interfaces.Infrastructure.Persistence;
 using TMS.Overpass.Application.Interfaces.Infrastructure.Persistence.Repositories;
 using TMS.Overpass.Application.Mapping;
+using TMS.Overpass.Console.Interfaces;
 using TMS.Overpass.Domain.DTOs;
 using TMS.Overpass.Domain.Overpass;
 
