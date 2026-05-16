@@ -25,13 +25,19 @@ public sealed record Tags
     [JsonPropertyName("railway")]
     public string? Railway { get; init; }
 
-    [JsonPropertyName("start_date")]
-    public DateOnly? StartDate  { get; init; }
-
     [JsonPropertyName("tram")]
     public string? Tram { get; init; }
 
     [JsonPropertyName("zone")]
     public string? Zone { get; init; }
+
+    [JsonPropertyName("electrified")]
+    public string? Electrified { get; init; }
+
+    [JsonPropertyName("frequency")]
+    public string? Frequency  { get; init; }
+
+    [JsonPropertyName("gauge")]
+    public string? Gauge { get; init; }
 
 }

@@ -1,9 +1,13 @@
-<Project Sdk="Aspire.AppHost.Sdk/13.1.2">
+<Project Sdk="Aspire.AppHost.Sdk/13.3.0">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
     <UserSecretsId>e03dbdf8-0bc4-43db-961b-3d028cff0ada</UserSecretsId>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Aspire.Hosting.SqlServer"/>
+  </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\TMS.Overpass.Console\TMS.Overpass.Console.csproj" />

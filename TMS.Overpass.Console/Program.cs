@@ -1,8 +1,8 @@
 ﻿using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using TMS.Overpass.Application.EtlPipelines;
 using TMS.Overpass.Console;
+using TMS.Overpass.Console.EtlPipelines;
 using TMS.Overpass.Console.Extensions;
 using TMS.Overpass.Infrastructure.Extensions;
 
@@ -20,6 +20,7 @@ builder.Services.AddSingleton<App>();
 builder.Services.AddEtlPipeline<LinesPipeline>();
 
 builder.Services.AddOpenStreetMapsClient(builder.Configuration);
+builder.Services.AddLinesRepository();
 builder.Services.AddTmsContext();
 
 IHost host = builder.Build();

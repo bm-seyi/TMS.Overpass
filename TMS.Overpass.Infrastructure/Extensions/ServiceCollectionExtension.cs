@@ -3,10 +3,12 @@ using Microsoft.Extensions.DependencyInjection;
 using TMS.Overpass.Application.Extensions;
 using TMS.Overpass.Application.Interfaces.Infrastructure.Http.Clients;
 using TMS.Overpass.Application.Interfaces.Infrastructure.Persistence;
+using TMS.Overpass.Application.Interfaces.Infrastructure.Persistence.Repositories;
 using TMS.Overpass.Infrastructure.Http.Clients;
 using TMS.Overpass.Infrastructure.Interfaces;
 using TMS.Overpass.Infrastructure.Persistence;
 using TMS.Overpass.Infrastructure.Persistence.Context;
+using TMS.Overpass.Infrastructure.Persistence.Repositories;
 
 namespace TMS.Overpass.Infrastructure.Extensions;
 
@@ -15,6 +17,7 @@ public static class ServiceCollectionExtension
     extension(IServiceCollection services)
     {
         public IServiceCollection AddTmsContext() => services.AddDapperContext<TmsContext>("TmsContext");
+        public IServiceCollection AddLinesRepository() => services.AddScoped<ILinesRepository, LinesRepository>();
 
         public IServiceCollection AddOpenStreetMapsClient(IConfiguration configuration) 
         {
@@ -32,6 +35,7 @@ public static class ServiceCollectionExtension
         internal IServiceCollection AddDapperContext<T>(string serviceKey) where T : class, IDapperContext
         {
             services.AddKeyedScoped<IDapperContext, T>(serviceKey);
+            services.AddScoped<T>();
             services.AddKeyedScoped<IUnitOfWork, UnitOfWork<T>>(serviceKey);
             return services;
         }

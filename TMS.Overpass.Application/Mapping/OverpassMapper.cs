@@ -19,5 +19,5 @@ public partial class OverpassMapper
 
     public partial Coordinates MapCoordinates(Node element);
 
-    public IEnumerable<LinesDTO> Map(OverpassResponse response, string lineCode) => response.Elements.Select(e => Map(e, lineCode));
+    public IEnumerable<LinesDTO> Map(OverpassResponse response, string lineCode) => response.Nodes.Select(e => Map(e, lineCode));
 }

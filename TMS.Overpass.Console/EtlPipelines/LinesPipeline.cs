@@ -1,6 +1,7 @@
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
 using System.Diagnostics;
+using TMS.Overpass.Application;
 using TMS.Overpass.Application.Interfaces.Infrastructure.Http.Clients;
 using TMS.Overpass.Application.Interfaces.Infrastructure.Persistence;
 using TMS.Overpass.Application.Interfaces.Infrastructure.Persistence.Repositories;
@@ -9,7 +10,7 @@ using TMS.Overpass.Console.Interfaces;
 using TMS.Overpass.Domain.DTOs;
 using TMS.Overpass.Domain.Overpass;
 
-namespace TMS.Overpass.Application.EtlPipelines;
+namespace TMS.Overpass.Console.EtlPipelines;
 
 internal sealed class LinesPipeline(ILogger<LinesPipeline> logger, IOpenStreetMapsClient openStreetMapsClient, [FromKeyedServices("TmsContext")]IUnitOfWork unitOfWork, ILinesRepository linesRepository) : IEtlPipeline
 {
@@ -23,11 +24,10 @@ internal sealed class LinesPipeline(ILogger<LinesPipeline> logger, IOpenStreetMa
     {
         using Activity? _ = _activitySource.StartActivity("LinesPipeline.ExecuteAsync");
 
-        string line = LinesOverpassQueryBuilder.Build("APL");
+        string lineQuery = LinesOverpassQueryBuilder.Build("APL");
         
-        OverpassResponse overpassResponse = await _openStreetMapsClient.RunQueryAsync(line, cancellationToken);
+        OverpassResponse overpassResponse = await _openStreetMapsClient.RunQueryAsync(lineQuery, cancellationToken);
         OverpassMapper overpassMapper = new OverpassMapper();
-
         IEnumerable<LinesDTO> linesDTOs = overpassMapper.Map(overpassResponse, "AIR");
         
         await  _unitOfWork.OpenAsync(cancellationToken);

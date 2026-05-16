@@ -1,8 +1,5 @@
-using Aspire;
 using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
 using Projects;
-
 
 IDistributedApplicationBuilder builder = DistributedApplication.CreateBuilder(args);
 
@@ -12,7 +9,18 @@ builder.Configuration
     .AddUserSecrets<Program>()
     .AddEnvironmentVariables();
 
-builder.AddProject<TMS_Overpass_Console>("TMS");
+IResourceBuilder<SqlServerServerResource> devServer = builder.AddSqlServer("DevServer", builder.AddParameter("DevServerPassword", secret: true), 1433)
+    .WithLifetime(ContainerLifetime.Session)
+    .WithImage("mssql/server", "2025-latest")
+    .WithEnvironment("ACCEPT_EULA", "Y")
+    .WithEnvironment("TZ", "Europe/London")
+    .WithDataVolume("mssql_data");
+
+IResourceBuilder<SqlServerDatabaseResource> tmsDatabase = devServer.AddDatabase("TMS-Database", "TMS");
+
+builder.AddProject<TMS_Overpass_Console>("TMS")
+    .WaitFor(tmsDatabase)
+    .WithReference(tmsDatabase, "DefaultConnection");
 
 DistributedApplication distributedApplication = builder.Build();
 
