@@ -8,6 +8,17 @@
         <PackageVersion Include="Microsoft.Extensions.Configuration.Abstractions" Version="10.0.7"/>
         <PackageVersion Include="Microsoft.Extensions.Configuration.Binder" Version="10.0.7"/>
 
+        <!-- .NET Aspire-->
+        <PackageVersion Include="Aspire.Hosting.SqlServer" Version="13.3.0" />
+
+        <!-- OpenTelemetry -->
+        <PackageVersion Include="Microsoft.Extensions.Http.Resilience" Version="10.5.0" />
+        <PackageVersion Include="Microsoft.Extensions.ServiceDiscovery" Version="10.5.0" />
+        <PackageVersion Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.15.3" />
+        <PackageVersion Include="OpenTelemetry.Extensions.Hosting" Version="1.15.3" />
+        <PackageVersion Include="OpenTelemetry.Instrumentation.Http" Version="1.15.1" />
+        <PackageVersion Include="OpenTelemetry.Instrumentation.Runtime" Version="1.15.1" />
+
 
         <!-- Microsoft Misc-->
         <PackageVersion Include="Microsoft.Data.SqlClient" Version="7.0.1" />

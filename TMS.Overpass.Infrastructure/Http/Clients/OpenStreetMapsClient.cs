@@ -1,8 +1,10 @@
 using System.Diagnostics;
+using System.Text.Json;
 using Microsoft.Extensions.Logging;
 using TMS.Overpass.Application.Interfaces.Infrastructure.Http.Clients;
 using TMS.Overpass.Domain.Overpass;
 using TMS.Overpass.Infrastructure.Extensions;
+using TMS.Overpass.Infrastructure.Json.Converters;
 
 namespace TMS.Overpass.Infrastructure.Http.Clients;
 
@@ -22,7 +24,12 @@ internal sealed class OpenStreetMapsClient(ILogger<OpenStreetMapsClient> logger,
 
         using HttpResponseMessage httpResponseMessage = await _httpClient.PostAsync("api/interpreter", stringContent, cancellationToken);
 
-        OverpassResponse overpassResponse = await httpResponseMessage.Content.ReadRequiredFromJsonAsync<OverpassResponse>(cancellationToken);
+        JsonSerializerOptions jsonSerializerOptions = new JsonSerializerOptions
+        {
+            Converters = { new OverpassResponseConverter() }
+        };
+
+        OverpassResponse overpassResponse = await httpResponseMessage.Content.ReadRequiredFromJsonAsync<OverpassResponse>(cancellationToken, jsonSerializerOptions);
 
         return overpassResponse;
     }

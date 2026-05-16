@@ -5,20 +5,12 @@ using TMS.Overpass.Infrastructure.Interfaces;
 
 namespace TMS.Overpass.Infrastructure.Persistence;
 
-internal sealed class UnitOfWork<T> : IAsyncDisposable, IUnitOfWork where T : notnull, IDapperContext
+internal sealed class UnitOfWork<T>(T context, ILogger<UnitOfWork<T>> logger) : IAsyncDisposable, IUnitOfWork where T : notnull, IDapperContext
 {
-    private readonly T _context;
-    private readonly ILogger<UnitOfWork<T>> _logger;
+    private readonly T _context = context ?? throw new ArgumentNullException(nameof(context));
+    private readonly ILogger<UnitOfWork<T>> _logger = logger ?? throw new ArgumentNullException(nameof(logger));
 
     private static readonly ActivitySource _activitySource = new("TMS.Overpass.Infrastructure");
-
-    public UnitOfWork(T context, ILogger<UnitOfWork<T>> logger)
-    {
-        _context = context ?? throw new ArgumentNullException(nameof(context));
-        _logger = logger ?? throw new ArgumentNullException(nameof(logger));
-    }
-
-    public T Context => _context;
 
     public async Task OpenAsync(CancellationToken cancellationToken)
     {

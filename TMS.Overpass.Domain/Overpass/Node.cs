@@ -8,7 +8,7 @@ public sealed record Node
     public required string Type { get; init; }
 
     [JsonPropertyName("id")]
-    public required int Id { get; init; }
+    public required long Id { get; init; }
 
     [JsonPropertyName("lat")]
     public required double Latitude { get; init; }
